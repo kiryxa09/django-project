@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Статьи</title>
-</head>
-<body>
+
+{% extends 'base.html' %} 
+{% block title %}Статьи{% endblock %}
+{% block body %}
+  {% if user.is_authenticated %}
+  <p>Фильтрация статей по названию</p>
+  <form action="{% url 'articles_filter' %}" method="get">
+    <label>Название:</label>
+    <input type="text" name="name">
+    <button type="submit">Отфильтровать</button>
+  </form>
+  {% endif %}
   <h1 class="articles__title">Статьи</h1>
   {% for article in articles %}
     <div class="articles__item">
-    <a class="articles__link" href="{%  url 'article' article.id %}">
-      <p class="articles__text">{{article}}</p>
+    <a class="articles__link" href="{%  url 'article' article.slug %}">
+      <p class="articles__text">{{article.author}}: {{article.title}}</p>
     </a>
     </div>
   {% endfor %}
-</body>
-</html>
+{% endblock %}

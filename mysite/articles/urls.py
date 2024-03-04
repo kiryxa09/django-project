@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import index, articles, article
+from .views import index, articles, article, articles_filter
+
 
 urlpatterns = [
   path('index/', index),
   path('', articles),
-  path('<int:article_id>/', article, name='article')
+  path('articles_filter/', articles_filter, name='articles_filter'),
+  path('<slug:slug>/', article, name='article'),
 ]

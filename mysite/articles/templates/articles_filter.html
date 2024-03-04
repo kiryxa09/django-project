@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% block title %}Фильтрация статей по названию{% endblock %}
+{% block body %}
+
+  <a href="/articles/">Назад к статьям</a>
+  <h1 class="articles__title">Фильтрация статей по названию</h1>
+  <h2>Поиск по: {{ request.GET.name }}</h2>
+  {% for article in articles %}
+    <p><a href="{%  url 'article' article.id %}">{{article.title}}</a></p>
+  {% endfor %}
+
+{% endblock %}
